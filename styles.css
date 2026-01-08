@@ -9,8 +9,6 @@
     letter-spacing: -.17px;
 }
 
-
-
 .mouse-bg {
   position: fixed;
   top: -10px;
@@ -26,7 +24,7 @@
 }
 
 .notice{
-    position: fixed;
+    /* position: fixed; */
     width: 100%;
     margin: 0 auto;
     padding: 7px;
@@ -34,7 +32,7 @@
     font-size: 12px;
     line-height: 1.5;
     color: #ffffff;
-    z-index: 9999;
+    /* z-index: 9999; */
 }
 
 .notice p{
@@ -43,7 +41,6 @@
     margin: 0 auto;
     color: #ffffff;
 }
-
 
 .head-container{
     /* position: fixed; */
@@ -74,6 +71,7 @@
     align-items: center;
     z-index: 9999;
     margin-top: 40px;
+    border: 2px solid red;
 }
 
 .nav-links{
@@ -919,7 +917,7 @@
 
     .head-container .hamburger{
         display: block;
-        z-index: 9999;
+        /* z-index: 9999; */
     }
 
     .head-container .hamburger.active{
@@ -942,8 +940,8 @@
 
     .head-container .nav-links{
         position: fixed;
-        top: -100%;
-        left: 0;
+        left: 100%;
+        top: 0;
         height: 100vh;
         width: 100%;
         background-color: white;
@@ -953,7 +951,7 @@
         gap: 10px;
         transition: right 0.3s ease;
         box-shadow: -2px 0 5px rgba(0,0,0,0.1);
-        z-index: 9998;
+        /* z-index: 9999; */
         text-align: center;
         transition: all 0.3s ease-in-out;
     }
@@ -967,7 +965,7 @@
     }
 
     .head-container .nav-links.active{
-        top: 0;
+        left: 0;
         transition: all 0.3s ease-in-out;
     }
 
