@@ -3,12 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Youth Hub</title>
-    <link rel="stylesheet" href="styles.css"><link rel="preconnect" href="https://fonts.googleapis.com">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"><link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Cinzel:wght@400..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+   
+
+
+
 </head>
 <body>
     <!-- Navigation Bar -->
@@ -32,10 +36,10 @@
                 <li><a href="#events">Media & Gallery</a></li>
                 <li><a href="#resources">Songs</a></li>
                 <li><a href="contact.html">Contact</a></li>
-                <li class="dropdown-btn"><button>Sign in / Join Us</button></li>
+                <li class="dropdown-btn"><button onclick="window.location.href='signup.html'">Sign in / Join Us</button></li>
             </ul>
 
-            <button class="btn-2" onclick="window.location.href='login.html'">Sign In / Join Us</button>
+            <button class="btn-2" onclick="window.location.href='signup.html'">Sign In / Join Us</button>
 
             <div class="hamburger" id="hamburger">
                 <span></span>
@@ -46,21 +50,32 @@
         
     </div>
 
-    <section class="login-section">
-        <div class="login-container">
-            <h2>Welcome back</h2>
-            <form class="login-form">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" required placeholder="Enter Username">
+    <section class="signup-section">
+        <div class="signup-container">
+            <h2>Create Your Account</h2>
+            <form id="signup-form" class="signup-form" method="post" action="#">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required placeholder="Full name" />
+
+                <!-- <label for="phoneNumber">Phone Number</label>
+                <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="Phone number (optional)" /> -->
+
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required placeholder="Enter your email" />
+
+                <label for="role">Role</label>
+                <input type="text" id="role" name="role" placeholder="member" value="member" />
 
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password" required  placeholder="Enter Password">
-                <p class="forgotten-password"><a href="#">Forgot Password?</a></p>
+                <input type="password" id="password1" name="password1" required placeholder="Enter password" />
 
-                <button type="submit" class="btn-1">Sign In</button>
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" id="password2" name="password2" required placeholder="Confirm password" />
 
-                <p class="signup-link">Don't have an account?<a href="signup.html">Join Us</a></p>
+                <button type="submit" class="btn-1">Join Now</button>
+                <p class="login-link">Already have an account?<a href="login.html"> Sign In</a></p>
             </form>
+
         </div>
     </section>
 
@@ -88,8 +103,12 @@
         </div>
     </footer>
 
+    
     <div class="mouse-bg"></div>
 
-    <script src="main.js"></script>
+    <!-- <script src="main.js"></script> could be changed -->
+    <script src="main.js?v=1.0.3"></script>
+
+        
 </body>
 </html>
