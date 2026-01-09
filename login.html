@@ -1,31 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Youth Hub</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="styles.css"><link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"><link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Cinzel:wght@400..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Cinzel:wght@400..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
-
 <body>
+    <!-- Navigation Bar -->
     <div class="notice">
         <p>Upcoming Events - Watch Out</p>
     </div>
 
+
     <div class="head-container">
+
         <nav class="navbar">
-            <div class="logo">
+            <div class="logo" >
                 <a href="index.html"><img src="img/LOGO-YOUTH.png" class="logo-image"></a>
                 <!-- <span class="logo-text">Youth-Hub</span> -->
             </div>
@@ -36,10 +31,10 @@
                 <li><a href="#events">Media & Gallery</a></li>
                 <li><a href="#resources">Songs</a></li>
                 <li><a href="contact.html">Contact</a></li>
-                <li class="dropdown-btn"><button onclick="window.location.href='signup.html'">Sign in / Join Us</button></li>
+                <li class="dropdown-btn"><button>Sign in / Join Us</button></li>
             </ul>
 
-            <button onclick="window.location.href='signup.html'">Sign In / Join Us</button>
+            <button class="btn-2" onclick="window.location.href='login.html'">Sign In / Join Us</button>
 
             <div class="hamburger" id="hamburger">
                 <span></span>
@@ -47,25 +42,23 @@
                 <span></span>
             </div>
         </nav>
+        
     </div>
 
-    <section class="contact-section">
-        <div class="contact-container">
-            <h2>Contact Us</h2>
+    <section class="login-section">
+        <div class="login-container">
+            <h2>Welcome back</h2>
+            <form class="login-form">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required placeholder="Enter Username">
 
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required  placeholder="Enter Password">
+                <p class="forgotten-password"><a href="#">Forgot Password?</a></p>
 
-            <form class="contact-form">
-                <label for="name">Name*</label>
-                <input type="text" id="name" name="name" placeholder="Full Names" required>
+                <button type="submit" class="btn-1">Sign In</button>
 
-                <label for="email">Email*</label>
-                <input type="email" id="email" name="email" placeholder="Email Address" required>
-
-                <label for="message">Message*</label>
-                <textarea id="message" name="message" rows="5" placeholder="Your Message Here" required></textarea>
-
-
-                <button type="submit">SEND MESSAGE</button>
+                <p class="signup-link">Don't have an account?<a href="signup.html">Join Us</a></p>
             </form>
         </div>
     </section>
@@ -78,13 +71,12 @@
                 <div class="logo">
                     <img src="img/LOGO-YOUTH.png" class="logo-image">
                     <!-- <span class="logo-text">Youth Hub</span> -->
-
                 </div>
                 <p>
                     Join 200+ young voices, leaders, and musicians who have embraced worship, excellence, and unity.
                 </p>
 
-                <button onclick="window.location.href='contact.html'">Contact Us</button>
+                <button>Contact Us</button>
             </div>
         </div>
 
@@ -95,11 +87,8 @@
         </div>
     </footer>
 
-
     <div class="mouse-bg"></div>
 
     <script src="main.js"></script>
-
 </body>
-
 </html>
