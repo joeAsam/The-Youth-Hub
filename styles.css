@@ -60,9 +60,15 @@
     /* border: 1px solid red; */
 }
 
-.head-container .navbar .logo img{
+.head-container .navbar .logo .logo-image,
+.head-container .navbar .logo .mobile-logo-image{
     display: flex;
     width: 100%;
+}
+
+.head-container .navbar .logo .mobile-logo-image{
+    width: 15%;
+    display: none;
 }
 
 .navbar{
@@ -872,8 +878,8 @@
 .footer-bottom p{
     color: #ffffff;
     text-align: center;
-    padding: 35px;
-    font-size: 1.25rem;
+    padding: 25px 0;
+    font-size: 1rem;
 }
 
 /* LOGIN & REGISTER */
@@ -1268,9 +1274,60 @@
 }
 
 @media (max-width: 600px){
+    .head-container .navbar .logo .logo-image{
+        display: none;
+    }
+
+    .head-container .navbar .logo .mobile-logo-image{
+        display: block;
+        width: 20px;
+    }
+
+    .hero-section .hero-section-container .hero-text-main span{
+        font-size: 2.65rem;
+        /* border: 1px solid red    ; */
+    }
+
+    .hero-section .hero-section-container .hero-text-sub span{
+        font-size: .9rem;
+        line-height: 25px;
+    }
+
+    .hero-section .hero-image{
+        width: 350px;
+        height: 350px;
+    }
+
+    .vision-mission-container .CTA-section .lead-text h2{
+        font-size: 2.45rem;
+    }
+
+    .vision-mission-container .CTA-section .lead-text p{
+        font-size: .9rem;
+    }
+
+    .vision-mission-container .CTA-section .CTA-buttons {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+    }
+
     .brief-contact-section{
         flex-direction: column;
         place-items: center;
+        padding: 0 20px;
+    }
+
+    .footer-section .container{
+        padding: 0 20px;
+    }
+
+    .footer-section .container .left-card{
+        width: 100%;
+        max-width: 400px;
+        
     }
 }
 
