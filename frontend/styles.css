@@ -25,6 +25,7 @@
 
 .notice{
     /* position: fixed; */
+    /* border: 2px solid red; */
     width: 100%;
     margin: 0 auto;
     padding: 7px;
@@ -35,11 +36,25 @@
     /* z-index: 9999; */
 }
 
+.notice .notice-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    /* border: 2px solid rgb(18, 148, 37); */
+    margin: 0 auto;
+}
+
 .notice p{
     /* border: 2px solid red; */
-    max-width: 1200px;
     margin: 0 auto;
     color: #ffffff;
+}
+
+.notice .notice-container .socials-links{
+    display: flex;
+    gap: 15px;
+    margin-right: 10px;
 }
 
 .head-container{
