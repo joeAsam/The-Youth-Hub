@@ -1,139 +1,11 @@
-// document.addEventListener("DOMContentLoaded", () => {
-//   // ===== UI =====
-//   const mouseBg = document.querySelector(".mouse-bg");
-//   if (mouseBg) {
-//     document.addEventListener("mousemove", (e) => {
-//       mouseBg.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-//     });
-//   }
-
-//   const hamburger = document.getElementById("hamburger");
-//   const navLinks = document.querySelector(".nav-links");
-//   if (hamburger && navLinks) {
-//     hamburger.addEventListener("click", () => {
-//       navLinks.classList.toggle("active");
-//       hamburger.classList.toggle("active");
-//     });
-//   }
-
-//   const API_BASE = "http://127.0.0.1:8000"; // change if your API is elsewhere
-
-//   // ===== SIGNUP handler =====
-//   const signupForm = document.getElementById("signup-form");
-//   if (signupForm) {
-//     signupForm.addEventListener("submit", async (e) => {
-//       e.preventDefault(); // prevents default GET that places fields in URL
-
-//       const name = document.getElementById("name")?.value.trim() || "";
-//       const email = document.getElementById("email")?.value.trim() || "";
-//       const role = document.getElementById("role")?.value.trim() || "member";
-//       const password1 = document.getElementById("password1")?.value || "";
-//       const password2 = document.getElementById("password2")?.value || "";
-
-//       if (!name || !email || !password1) {
-//         alert("Name, email and password are required.");
-//         return;
-//       }
-//       if (password1 !== password2) {
-//         alert("Passwords do not match.");
-//         return;
-//       }
-
-//       try {
-//         const res = await fetch(`${API_BASE}/register`, {
-//           method: "POST",
-//           headers: { "Content-Type": "application/json" },
-//           body: JSON.stringify({ name, email, role, password: password1 }),
-//           cache: "no-store"
-//         });
-
-//         // Defense: try to parse JSON, but handle non-JSON responses
-//         const payload = await res.json().catch(() => null);
-
-//         if (!res.ok) {
-//           // show backend message if present
-//           const msg = payload?.detail || payload?.message || `Register failed (${res.status})`;
-//           alert(msg);
-//           return;
-//         }
-
-//         // success: either redirect to login or auto-login
-//         alert("Registration successful. Redirecting to login...");
-//         window.location.href = "login.html";
-//       } catch (err) {
-//         console.error("Signup error:", err);
-//         alert("Network error. Backend not reachable.");
-//       }
-//     });
-//   }
-
-//   // ===== LOGIN handler =====
-//   const loginForm = document.getElementById("login-form");
-//   if (loginForm) {
-//     loginForm.addEventListener("submit", async (e) => {
-//       e.preventDefault();
-
-//       const email = document.getElementById("email")?.value.trim() || "";
-//       const password = document.getElementById("password")?.value || "";
-
-//       if (!email || !password) {
-//         alert("Please enter email and password.");
-//         return;
-//       }
-
-//       try {
-//         const res = await fetch(`${API_BASE}/token`, {
-//           method: "POST",
-//           headers: { "Content-Type": "application/x-www-form-urlencoded" },
-//           body: new URLSearchParams({ username: email, password }),
-//           cache: "no-store"
-//         });
-
-//         const data = await res.json().catch(() => null);
-
-//         if (!res.ok) {
-//           const msg = data?.detail || `Login failed (${res.status})`;
-//           alert(msg);
-//           return;
-//         }
-
-//         // store token and redirect
-//         // localStorage.setItem("access_token", data.access_token);
-//         localStorage.setItem("token", data.access_token);
-//         window.location.href = "dashboard.html";
-//       } catch (err) {
-//         console.error("Login error:", err);
-//         alert("Network error. Backend not reachable.");
-//       }
-//     });
-//   }
-
-//   fetch("http://127.0.0.1:8000/auth/profile", {
-//   headers: {
-//     "Authorization": `Bearer ${localStorage.getItem("token")}`
-//   }
-// })
-
-// const formData = new FormData();
-// formData.append("image", file);
-
-// fetch("/auth/upload-profile-image", {
-//   method: "POST",
-//   headers: {
-//     "Authorization": `Bearer ${token}`
-//   },
-//   body: formData
-// });
-
-
-// });
+// chaiii 
 
 document.addEventListener("DOMContentLoaded", () => {
   const API_BASE = "http://127.0.0.1:8000";
   const token = localStorage.getItem("token");
 
   /* ======================
-     UI EFFECTS (SAFE)
+     UI EFFECTS
   ====================== */
   const mouseBg = document.querySelector(".mouse-bg");
   if (mouseBg) {
@@ -221,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       try {
-        const res = await fetch(`${API_BASE}/token`, {
+        const res = await fetch(`${API_BASE}/auth/token`, {
           method: "POST",
           headers: {
             "Content-Type": "application/x-www-form-urlencoded"
@@ -250,27 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ======================
-     AUTH-GATED UI
-  ====================== */
-  const notice = document.getElementById("notice");
-  if (notice && token) {
-    fetch(`${API_BASE}/verify-token`, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    })
-      .then(res => {
-        if (!res.ok) throw new Error();
-        notice.style.display = "block";
-      })
-      .catch(() => {
-        localStorage.removeItem("token");
-        notice.style.display = "none";
-      });
-  }
-
-  /* ======================
-     PROFILE FETCH (DASHBOARD ONLY)
+     PROFILE FETCH (DASHBOARD)
   ====================== */
   const profileName = document.getElementById("profile-name");
   const profileRole = document.getElementById("profile-role");
@@ -281,7 +133,10 @@ document.addEventListener("DOMContentLoaded", () => {
         Authorization: `Bearer ${token}`
       }
     })
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) throw new Error("Unauthorized");
+        return res.json();
+      })
       .then(data => {
         profileName.textContent = data.name;
         profileRole.textContent = data.role;
@@ -291,6 +146,45 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.removeItem("token");
         window.location.href = "login.html";
       });
+  }
+
+  /* ======================
+     PROFILE IMAGE UPLOAD
+  ====================== */
+  const uploadBtn = document.getElementById("upload-btn");
+  const imageInput = document.getElementById("profile-image");
+
+  if (uploadBtn && imageInput && token) {
+    uploadBtn.addEventListener("click", async () => {
+      if (!imageInput.files.length) {
+        alert("Please select an image first.");
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append("image", imageInput.files[0]);
+
+      try {
+        const res = await fetch(`${API_BASE}/auth/upload-profile-image`, {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`
+          },
+          body: formData
+        });
+
+        if (!res.ok) {
+          alert("Upload failed.");
+          return;
+        }
+
+        alert("Profile image uploaded successfully.");
+
+      } catch (err) {
+        console.error(err);
+        alert("Upload error.");
+      }
+    });
   }
 
 });

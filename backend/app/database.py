@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
-from os import getenv
+import os
 
 # moving from sqlite to postgresql for production
 
@@ -12,7 +12,11 @@ from os import getenv
 
 # DATABASE_URL = "postgresql://choir_user:supa_dupa_pass266@localhost:5432/choir_hub"
 
-DATABASE_URL = getenv("DATABASE_URL", "postgresql://choir_user:supa_dupa_pass266@localhost:5432/choir_hub")
+# DATABASE_URL = os.getenv("DATABASE_URL")
+DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://choir_user:supa_dupa_pass266@localhost:5432/choir_hub")
+
+if not DATABASE_URL:
+    raise RuntimeError("DATABASE_URL is not set")
 
 engine = create_engine(
     DATABASE_URL,
