@@ -23,3 +23,13 @@ class Token(BaseModel):
 
 class TokenData(BaseModel):
     email: Optional[str] = None
+
+class ProfileResponse(BaseModel):
+    id: int
+    name: str
+    email: str
+    role: str
+    profile_image: Optional[str]
+
+    class Config:
+        from_attributes = True

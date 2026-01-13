@@ -10,3 +10,6 @@ class User(Base):
     role = Column(String, nullable=False)
     hashed_pwd = Column(String, nullable=False)
     is_active = Column(Boolean, default=True)
+    profile_image = Column(String, nullable=True)
+
+

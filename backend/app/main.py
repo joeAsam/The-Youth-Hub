@@ -1,12 +1,23 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 
 from .database import Base, engine
 from .routes import auth, users
 
+from .deps import get_current_active_user
+from .schemas import ProfileResponse
+from .models import User
+
+from .database import get_db
+from sqlalchemy.orm import Session
+
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="choir-hub")
+
+@app.get("/ping")
+def ping():
+    return {"status": "alive"}
 
 app.add_middleware(
     CORSMiddleware,
@@ -21,6 +32,7 @@ app.add_middleware(
 
 app.include_router(auth.router)
 app.include_router(users.router)
+
 
 @app.get("/")
 def root():

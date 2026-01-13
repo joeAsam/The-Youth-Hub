@@ -5,7 +5,9 @@ from datetime import timedelta
 
 from ..schemas import UserCreate, UserResponse, Token
 from ..models import User
-from ..deps import get_db
+from ..database import get_db
+from ..deps import get_current_active_user
+from ..models import User
 from ..security import (
     get_pwd_hash,
     verify_pwd,
@@ -13,11 +15,16 @@ from ..security import (
     validate_password
 )
 
-router = APIRouter(tags=["auth"])
+# router = APIRouter(tags=["auth"])
+router = APIRouter(
+    prefix="/auth",
+    tags=["Auth"]
+)
 TOKEN_EXPIRES = 30
 
 @router.post("/register", response_model=UserResponse)
 def register(user: UserCreate, db: Session = Depends(get_db)):
+# def register(user: UserCreate, db: Session = Depends(require_admin)):
     validate_password(user.password)
 
     if db.query(User).filter(User.email == user.email).first():
@@ -45,3 +52,13 @@ def login(form: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get
         expires_delta=timedelta(minutes=TOKEN_EXPIRES),
     )
     return {"access_token": access_token, "token_type": "bearer"}
+
+@router.get("/profile")
+def get_profile(current_user: User = Depends(get_current_active_user)):
+    return {
+        "id": current_user.id,
+        "name": current_user.name,
+        "email": current_user.email,
+        "role": current_user.role,
+        "is_active": current_user.is_active
+    }
