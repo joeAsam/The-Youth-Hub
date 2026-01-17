@@ -4,7 +4,7 @@ import os
 
 # moving from sqlite to postgresql for production
 
-# DATABASE_URL = "sqlite:///users.db"
+DATABASE_URL = "sqlite:///users.db"
 
 # engine = create_engine(
 #     DATABASE_URL, connect_args={"check_same_thread": False}
@@ -13,7 +13,7 @@ import os
 # DATABASE_URL = "postgresql://choir_user:supa_dupa_pass266@localhost:5432/choir_hub"
 
 # DATABASE_URL = os.getenv("DATABASE_URL")
-DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://choir_user:supa_dupa_pass266@localhost:5432/choir_hub")
+# DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://choir_user:supa_dupa_pass266@localhost:5432/choir_hub")
 
 if not DATABASE_URL:
     raise RuntimeError("DATABASE_URL is not set")
