@@ -1,0 +1,12 @@
+.original-container{
+    min-height: 100vh; 
+    min-height: 100dvh; 
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 30px;
+}
+
+.main-container{
+    border: 2px solid white;
+    padding: min(30px, 7%);
+}
